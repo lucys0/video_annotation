@@ -423,8 +423,8 @@ class _ActionAnnotation:
             'object': self.object['name'],
             'description': self.description
         }
-        # return f"Action: {info}"
-        return ""
+        return f"Action: {info}"
+        # return ""
 
 
 class _AnnotationsBase:
