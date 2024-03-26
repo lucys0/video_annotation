@@ -1,5 +1,6 @@
 // index.js
 // Copyright (C) 2021, ANU CVML
+// Modified by: Lucy Shi
 
 // --- setup ----------------------------------------------------------------------
 

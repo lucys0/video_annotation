@@ -1,77 +1,29 @@
 <template>
-  <q-layout
-    view="hHh Lpr lff"
-    style="height: 100%"
-  >
-    <q-header
-      :class="['header', { 'text-dark': !$q.dark.isActive }]"
-      :elevated="!$q.dark.isActive"
-    >
+  <q-layout view="hHh Lpr lff" style="height: 100%">
+    <q-header :class="['header', { 'text-dark': !$q.dark.isActive }]" :elevated="!$q.dark.isActive">
       <q-toolbar>
-        <q-btn
-          flat
-          round
-          dense
-          :icon="drawer ? 'menu_open' : 'menu'"
-          @click="drawer = !drawer"
-        ></q-btn>
+        <q-btn flat round dense :icon="drawer ? 'menu_open' : 'menu'" @click="drawer = !drawer"></q-btn>
         <q-toolbar-title class="text-center">
-          <a
-            class="q-mr-sm"
-            href="/"
-            target="_blank"
-          >
-            <q-avatar
-              square
-              size="md"
-            >
-              <img
-                v-if="$q.dark.isActive"
-                src="img/logo-dark.svg"
-                alt="logo"
-              />
-              <img
-                v-else
-                src="img/logo.svg"
-                alt="logo"
-              />
+          <a class="q-mr-sm" href="/" target="_blank">
+            <q-avatar square size="md">
+              <img v-if="$q.dark.isActive" src="img/logo-dark.svg" alt="logo" />
+              <img v-else src="img/logo.svg" alt="logo" />
             </q-avatar>
           </a>
-          <a
-            class="vertical-middle"
-            href="https://www.anu.edu.au/"
-            target="_blank"
-          >
-            ANU CVML
+          <a class="vertical-middle" href="" target="_blank">
+            <!-- TODO: add link -->
+            Video Annotation
           </a>
-          <span class="vertical-middle">VIDeo Annotation Tool</span>
+          <!-- <span class="vertical-middle">Video Annotation Tool</span> -->
         </q-toolbar-title>
-        <q-circular-progress
-          v-if="annotationStore.hasVideo && annotationStore.isCaching"
-          class="q-mx-sm"
-          show-value
-          font-size="10px"
-          :value="progress"
-          size="30px"
-          :thickness="0.2"
-          color="primary"
-          track-color="grey-3"
-        >
+        <q-circular-progress v-if="annotationStore.hasVideo && annotationStore.isCaching" class="q-mx-sm" show-value
+          font-size="10px" :value="progress" size="30px" :thickness="0.2" color="primary" track-color="grey-3">
           {{ progress }}%
-          <q-tooltip
-            anchor="center left"
-            self="center right"
-          >
+          <q-tooltip anchor="center left" self="center right">
             Caching video frames. VideoLoader: {{ useV2 ? 'V2' : 'V1' }}.
           </q-tooltip>
         </q-circular-progress>
-        <q-btn
-          :icon="$q.dark.isActive ? 'dark_mode' : 'light_mode'"
-          flat
-          round
-          dense
-          @click="$q.dark.toggle"
-        ></q-btn>
+        <q-btn :icon="$q.dark.isActive ? 'dark_mode' : 'light_mode'" flat round dense @click="$q.dark.toggle"></q-btn>
       </q-toolbar>
     </q-header>
     <Drawer></Drawer>
@@ -86,17 +38,10 @@
     </q-page-container>
     <q-footer class="bg-transparent">
       <q-toolbar>
-        <q-toolbar-title
-          class="text-center text-caption"
-          :class="$q.dark.isActive ? 'text-gray-4' : 'text-black'"
-        >
-          Copyright © 2023,
-          <a
-            href="https://github.com/anucvml/vidat"
-            target="_blank"
-          >
-            ANU CVML </a
-          >. All rights reserved.
+        <q-toolbar-title class="text-center text-caption" :class="$q.dark.isActive ? 'text-gray-4' : 'text-black'">
+          Copyright © 2024,
+          <a href="https://github.com/lucys0/video_annotation" target="_blank">
+            ...in development </a>
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>

@@ -15,7 +15,7 @@
       src="img/logo.svg"
       alt="Logo"
     />
-    <div class="text-h4">Vidat</div>
+    <div class="text-h4">Video Annotation</div>
     <VersionBadge />
     <q-btn-group
       style="padding-top: 30px"
@@ -28,15 +28,15 @@
         label="open video"
         @click="handleOpen"
       />
-      <q-btn
+      <!-- <q-btn
         outline
         icon="file_upload"
         color="primary"
         label="load annotation"
         @click="handleLoad"
-      />
+      /> -->
     </q-btn-group>
-    <div style="padding: 20px 0">
+    <!-- <div style="padding: 20px 0">
       <a
         class="text-body1"
         style="padding: 0 10px; text-decoration: underline"
@@ -62,7 +62,7 @@
         to="/about"
         >About</router-link
       >
-    </div>
+    </div> -->
   </div>
 </template>
 
