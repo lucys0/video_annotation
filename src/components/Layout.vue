@@ -39,7 +39,7 @@
     <q-footer class="bg-transparent">
       <q-toolbar>
         <q-toolbar-title class="text-center text-caption" :class="$q.dark.isActive ? 'text-gray-4' : 'text-black'">
-          Copyright © 2024,
+          <!-- Copyright © 2024, -->
           <a href="https://github.com/lucys0/video_annotation" target="_blank">
             ...in development </a>
         </q-toolbar-title>

@@ -4,7 +4,7 @@
     :style="{ 'background-color': q.dark.isActive ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)' }"
   >
     <div
-      :title="`Action: ${action.action}\nStart: ${action.start}\nEnd: ${action.end}\nDuration: ${
+      :title="`Start: ${action.start}\nEnd: ${action.end}\nDuration: ${
         action.end - action.start
       }\nDescription: ${action.description}`"
       class="action"
