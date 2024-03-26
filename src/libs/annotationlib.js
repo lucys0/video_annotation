@@ -758,6 +758,14 @@ class ActionAnnotation {
     this.color = color
     this.description = description
   }
+  // a function for stringfy to json
+  toJSON() {
+    return {
+      start: this.start,
+      end: this.end,
+      description: this.description
+    }
+  }
 }
 
 export { Annotation, ObjectAnnotation, RegionAnnotation, SkeletonAnnotation, ActionAnnotation }
