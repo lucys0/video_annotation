@@ -122,7 +122,7 @@ if (sensitivity) {
   }
 }
 if (defaultFps) {
-  const fps = parseInt(defaultFps, 10)
+  const fps = parseInt(defaultFps, 50)
   if (fps >= 1 && fps <= 60 && fps % 1 === 0) {
     preferenceStore.defaultFps = fps
   }

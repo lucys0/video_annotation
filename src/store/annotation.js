@@ -25,7 +25,7 @@ const DEFAULT_ANNOTATION = {
   leftCurrentFrame: 0,
   rightCurrentFrame: 0,
   keyframeList: [],
-  mode: 'object', // 'object', 'region', 'skeleton', 'action'
+  mode: 'action', // 'object', 'region', 'skeleton', 'action'
   skeletonTypeId: 0,
 
   priorityQueue: [],
@@ -141,10 +141,10 @@ export const useAnnotationStore = defineStore('annotation', () => {
       mainStore.isSaved = true
       return {
         video: state.video,
-        keyframeList: state.keyframeList,
-        objectAnnotationListMap,
-        regionAnnotationListMap,
-        skeletonAnnotationListMap,
+        // keyframeList: state.keyframeList,
+        // objectAnnotationListMap,
+        // regionAnnotationListMap,
+        // skeletonAnnotationListMap,
         actionAnnotationList: state.actionAnnotationList
       }
     },

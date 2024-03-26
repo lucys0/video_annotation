@@ -17,7 +17,7 @@
       ></q-btn>
     </div>
     <q-list class="text-body1">
-      <q-item
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -43,7 +43,7 @@
             hide-bottom-space
           />
         </q-item-section>
-      </q-item>
+      </q-item> -->
       <q-item
         tag="label"
         v-ripple
@@ -54,7 +54,7 @@
               >Default FPS<q-tooltip
                 anchor="center right"
                 self="center left"
-                >The default frame(s) per second if not specified in config or annotation file.</q-tooltip
+                >The default frame(s) per second.</q-tooltip
               ></span
             >
           </q-item-label>
@@ -71,7 +71,7 @@
           />
         </q-item-section>
       </q-item>
-      <q-item
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -97,8 +97,8 @@
             hide-bottom-space
           />
         </q-item-section>
-      </q-item>
-      <q-item
+      </q-item> -->
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -121,8 +121,8 @@
             :options="['auto', 'v1', 'v2']"
           />
         </q-item-section>
-      </q-item>
-      <q-item
+      </q-item> -->
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -193,8 +193,8 @@
             unchecked-icon="clear"
           ></q-toggle>
         </q-item-section>
-      </q-item>
-      <q-item
+      </q-item> -->
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -217,7 +217,7 @@
             unchecked-icon="clear"
           ></q-toggle>
         </q-item-section>
-      </q-item>
+      </q-item> -->
       <q-item
         tag="label"
         v-ripple
@@ -242,7 +242,7 @@
           ></q-toggle>
         </q-item-section>
       </q-item>
-      <q-item
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -265,8 +265,8 @@
             unchecked-icon="clear"
           ></q-toggle>
         </q-item-section>
-      </q-item>
-      <q-item
+      </q-item> -->
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -289,7 +289,7 @@
             unchecked-icon="clear"
           ></q-toggle>
         </q-item-section>
-      </q-item>
+      </q-item> -->
     </q-list>
   </div>
 </template>

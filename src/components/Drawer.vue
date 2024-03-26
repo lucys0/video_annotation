@@ -49,16 +49,16 @@ import DrawerAnnotationControl from './DrawerAnnotationControl.vue'
 import DrawerVideoControl from './DrawerVideoControl.vue'
 
 const menuList = [
-  {
-    icon: 'video_label',
-    label: 'Annotation',
-    path: '/'
-  },
-  {
-    icon: 'settings',
-    label: 'Configuration',
-    path: '/configuration'
-  },
+  // {
+  //   icon: 'video_label',
+  //   label: 'Annotation',
+  //   path: '/'
+  // },
+  // {
+  //   icon: 'settings',
+  //   label: 'Configuration',
+  //   path: '/configuration'
+  // },
   {
     icon: 'dashboard',
     label: 'Preference',
@@ -69,11 +69,11 @@ const menuList = [
     label: 'Help',
     path: '/help'
   },
-  {
-    icon: 'book',
-    label: 'About',
-    path: '/about'
-  }
+  // {
+  //   icon: 'book',
+  //   label: 'About',
+  //   path: '/about'
+  // }
 ]
 const { drawer } = storeToRefs(useMainStore())
 const annotationStore = useAnnotationStore()
