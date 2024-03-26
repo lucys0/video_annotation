@@ -228,7 +228,8 @@ const actionList = computed(() =>
   annotationStore.actionAnnotationList
     .filter(
       (action) =>
-        currentFrame.value >= utils.time2index(action.start) && currentFrame.value <= utils.time2index(action.end)
+        // currentFrame.value >= utils.time2index(action.start) && currentFrame.value <= utils.time2index(action.end)
+        currentFrame.value >= action.start && currentFrame.value <= action.end
     )
     .map((action) => {
       return {

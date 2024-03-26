@@ -61,7 +61,8 @@
             :debounce="1500" @mousewheel.prevent></q-input>
         </q-td>
         <q-td auto-width>
-          {{ utils.toFixed2(props.row.end - props.row.start) }}
+          <!-- {{ utils.toFixed2(props.row.end - props.row.start) }} -->
+          {{ props.row.end - props.row.start }}
         </q-td>
         <!-- <q-td>
           <img v-if="configurationStore.actionLabelData.find((label) => label.id === props.row.action).thumbnail"
@@ -178,8 +179,10 @@ const columnList = [
 const handleAdd = () => {
   annotationStore.actionAnnotationList.push(
     new ActionAnnotation(
-      utils.index2time(annotationStore.leftCurrentFrame),
-      utils.index2time(annotationStore.rightCurrentFrame),
+      // utils.index2time(annotationStore.leftCurrentFrame),
+      // utils.index2time(annotationStore.rightCurrentFrame),
+      annotationStore.leftCurrentFrame,
+      annotationStore.rightCurrentFrame,
       configurationStore.actionLabelData[0].id,
       configurationStore.actionLabelData[0].objects[0],
       configurationStore.actionLabelData[0].color,
@@ -286,10 +289,12 @@ const handleActionInput = (row) => {
 /// operation
 const handleGoto = (row) => {
   if (typeof row.start === 'number') {
-    annotationStore.leftCurrentFrame = utils.time2index(row.start)
+    // annotationStore.leftCurrentFrame = utils.time2index(row.start)
+    annotationStore.leftCurrentFrame = row.start
   }
   if (typeof row.end === 'number') {
-    annotationStore.rightCurrentFrame = utils.time2index(row.end)
+    // annotationStore.rightCurrentFrame = utils.time2index(row.end)
+    annotationStore.rightCurrentFrame = row.end
   }
 }
 const handleSet = (row) => {

@@ -131,15 +131,19 @@ const handleNextThumbnail = () => {
 const handleLocate = () => {
   const currentAction = annotationStore.currentThumbnailAction
   if (typeof currentAction.start === 'number') {
-    annotationStore.leftCurrentFrame = utils.time2index(currentAction.start)
+    // annotationStore.leftCurrentFrame = utils.time2index(currentAction.start)
+    annotationStore.leftCurrentFrame = currentAction.start
   }
   if (typeof currentAction.end === 'number') {
-    annotationStore.rightCurrentFrame = utils.time2index(currentAction.end)
+    // annotationStore.rightCurrentFrame = utils.time2index(currentAction.end)
+    annotationStore.rightCurrentFrame = currentAction.end
   }
 }
 const handleSet = () => {
   const currentAction = annotationStore.currentThumbnailAction
-  currentAction.start = utils.index2time(annotationStore.leftCurrentFrame)
-  currentAction.end = utils.index2time(annotationStore.rightCurrentFrame)
+  // currentAction.start = utils.index2time(annotationStore.leftCurrentFrame)
+  // currentAction.end = utils.index2time(annotationStore.rightCurrentFrame)
+  currentAction.start = annotationStore.leftCurrentFrame
+  currentAction.end = annotationStore.rightCurrentFrame
 }
 </script>

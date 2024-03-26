@@ -71,7 +71,7 @@
           />
         </q-item-section>
       </q-item>
-      <!-- <q-item
+      <q-item
         tag="label"
         v-ripple
       >
@@ -81,7 +81,7 @@
               >Default FPK<q-tooltip
                 anchor="center right"
                 self="center left"
-                >The default frame(s) per keyframe if the keyframe list is not provided in annotation file.</q-tooltip
+                >The default frame(s) per keyframe.</q-tooltip
               ></span
             >
           </q-item-label>
@@ -97,7 +97,7 @@
             hide-bottom-space
           />
         </q-item-section>
-      </q-item> -->
+      </q-item>
       <!-- <q-item
         tag="label"
         v-ripple

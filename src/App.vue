@@ -128,7 +128,7 @@ if (defaultFps) {
   }
 }
 if (defaultFpk) {
-  const fpk = parseInt(defaultFpk, 10)
+  const fpk = parseInt(defaultFpk, 200)
   if (fpk >= 1 && fpk % 1 === 0) {
     preferenceStore.defaultFpk = fpk
   }

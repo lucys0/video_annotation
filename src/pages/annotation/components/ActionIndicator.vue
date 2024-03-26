@@ -37,8 +37,10 @@ const actionIndicatorList = computed(() => {
   }
   return annotationStore.actionAnnotationList.map((action) => {
     const markerWidthUnit = 100 / (annotationStore.video.frames - 1)
-    const leftFrame = utils.time2index(action.start)
-    const rightFrame = utils.time2index(action.end)
+    // const leftFrame = utils.time2index(action.start)
+    // const rightFrame = utils.time2index(action.end)
+    const leftFrame = action.start
+    const rightFrame = action.end
     const leftPercent = (leftFrame - 0.5) * markerWidthUnit + '%'
     const rightPercent = (annotationStore.video.frames - rightFrame - 1.5) * markerWidthUnit + '%'
     return {
@@ -51,8 +53,10 @@ const actionIndicatorList = computed(() => {
 
 const handleClick = (index) => {
   const action = annotationStore.actionAnnotationList[index]
-  annotationStore.leftCurrentFrame = utils.time2index(action.start)
-  annotationStore.rightCurrentFrame = utils.time2index(action.end)
+  // annotationStore.leftCurrentFrame = utils.time2index(action.start)
+  // annotationStore.rightCurrentFrame = utils.time2index(action.end)
+  annotationStore.leftCurrentFrame = action.start
+  annotationStore.rightCurrentFrame = action.end
   if (configurationStore.actionLabelData.find((label) => label.id === action.action).thumbnail) {
     annotationStore.currentThumbnailAction = annotationStore.currentThumbnailAction === action ? null : action
   } else {
