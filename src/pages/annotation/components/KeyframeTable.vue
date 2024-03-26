@@ -62,7 +62,7 @@
         >
           {{ utils.toFixed2(utils.index2time(props.row)) }}
         </q-td>
-        <q-td
+        <!-- <q-td
           key="nObject"
           :props="props"
         >
@@ -91,7 +91,7 @@
               ? annotationStore.skeletonAnnotationListMap[props.row].length
               : 0
           }}
-        </q-td>
+        </q-td> -->
         <q-td
           key="operation"
           :props="props"
@@ -130,9 +130,9 @@ const preferenceStore = usePreferenceStore()
 const columns = [
   { name: 'frame', align: 'center', label: 'frame' },
   { name: 'time', align: 'center', label: 'time' },
-  { name: 'nObject', align: 'center', label: '# object' },
-  { name: 'nRegion', align: 'center', label: '# region' },
-  { name: 'nSkeleton', align: 'center', label: '# skeleton' },
+  // { name: 'nObject', align: 'center', label: '# object' },
+  // { name: 'nRegion', align: 'center', label: '# region' },
+  // { name: 'nSkeleton', align: 'center', label: '# skeleton' },
   { name: 'operation', align: 'center', label: 'operation' }
 ]
 

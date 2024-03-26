@@ -1,99 +1,39 @@
 <template>
-  <div
-    class="row justify-between items-center q-pt-lg"
-    :class="{ 'q-pb-lg q-px-lg': $q.screen.lt.md }"
-  >
+  <div class="row justify-between items-center q-pt-lg" :class="{ 'q-pb-lg q-px-lg': $q.screen.lt.md }">
     <div>
       <q-btn-group flat>
-        <q-btn
-          outline
-          :icon="isPaused ? 'play_arrow' : 'pause'"
-          @click="handlePlayPause"
-          :disable="!annotationStore.video.frames"
-        >
+        <q-btn outline :icon="isPaused ? 'play_arrow' : 'pause'" @click="handlePlayPause"
+          :disable="!annotationStore.video.frames">
           <q-tooltip>{{ isPaused ? 'play (p)' : 'pause (p)' }}</q-tooltip>
         </q-btn>
-        <q-btn
-          outline
-          icon="stop"
-          :disabled="!showVideoPlayer"
-          @click="handleStop"
-        >
+        <q-btn outline icon="stop" :disabled="!showVideoPlayer" @click="handleStop">
           <q-tooltip v-if="showVideoPlayer">stop</q-tooltip>
         </q-btn>
-        <q-btn
+        <!-- <q-btn
           outline
           :icon="showEdit ? 'done' : 'edit'"
           @click="showEdit = !showEdit"
           :disable="!annotationStore.video.frames"
         >
           <q-tooltip>{{ showEdit ? 'done' : 'edit' }}</q-tooltip>
-        </q-btn>
+        </q-btn> -->
       </q-btn-group>
-      <q-select
-        v-if="!$q.screen.lt.md"
-        class="q-my-md"
-        label="Playback Rate"
-        outlined
-        dense
-        options-dense
-        emit-value
-        map-options
-        :disable="!isStopped"
-        v-model="annotationStore.videoPlaybackRate"
-        :options="videoPlaybackRateOptions"
-      />
     </div>
-    <q-select
-      v-if="$q.screen.lt.md"
-      class="q-my-md"
-      style="width: 162px"
-      label="Playback Rate"
-      outlined
-      dense
-      options-dense
-      emit-value
-      map-options
-      :disable="!isStopped"
-      v-model="annotationStore.videoPlaybackRate"
-      :options="videoPlaybackRateOptions"
-    />
-    <div
-      class="col-grow"
-      :class="[{ 'col-12': $q.screen.lt.md, 'q-px-lg': !$q.screen.lt.md }]"
-      :style="{ order: !$q.screen.lt.md ? 0 : -1 }"
-    >
-      <q-range
-        class="custom-range"
+    <div class="col-grow" :class="[{ 'col-12': $q.screen.lt.md, 'q-px-lg': !$q.screen.lt.md }]"
+      :style="{ order: !$q.screen.lt.md ? 0 : -1 }">
+      <q-range class="custom-range"
         :class="{ 'hide-right-marker': currentFocus === 'left', 'hide-left-marker': currentFocus === 'right' }"
-        :style="rangeStyle"
-        label-always
-        drag-range
-        snap
-        track-size="8px"
-        :min="0"
-        :max="annotationStore.video.frames - 1"
-        :step="1"
-        left-label-text-color="blue-grey-1"
-        right-label-text-color="blue-grey-1"
-        left-label-color="primary"
-        right-label-color="primary"
-        :left-label-value="
+        label-always drag-range snap track-size="8px" :min="0" :max="annotationStore.video.frames - 1" :step="1"
+        left-label-text-color="blue-grey-1" right-label-text-color="blue-grey-1" left-label-color="primary"
+        right-label-color="primary" :left-label-value="
           'L: ' + currentFrameRange.min + ' | ' + utils.toFixed2(utils.index2time(currentFrameRange.min)) + ' s'
-        "
-        :right-label-value="
+        " :right-label-value="
           'R: ' + currentFrameRange.max + ' | ' + utils.toFixed2(utils.index2time(currentFrameRange.max)) + ' s'
-        "
-        :model-value="currentFrameRange"
-        @update:model-value="handleInput"
-        :disable="!annotationStore.video.frames"
-      />
-      <ActionIndicator
-        v-if="preferenceStore.actions"
-        style="margin-top: -10px"
-      />
+        " :model-value="currentFrameRange" @update:model-value="handleInput"
+        :disable="!annotationStore.video.frames" />
+      <ActionIndicator v-if="preferenceStore.actions" style="margin-top: -10px" />
     </div>
-    <q-btn-group flat>
+    <!-- <q-btn-group flat>
       <q-btn
         outline
         icon="keyboard_arrow_left"
@@ -118,9 +58,14 @@
       >
         <q-tooltip>next keyframe (&gt)</q-tooltip>
       </q-btn>
-    </q-btn-group>
+    </q-btn-group> -->
+    <q-select v-if="!$q.screen.lt.md" class="q-my-md" label=">>" outlined dense options-dense emit-value map-options
+      :disable="!isStopped" v-model="annotationStore.videoPlaybackRate" :options="videoPlaybackRateOptions" />
   </div>
-  <KeyframeTable v-if="showEdit" />
+  <q-select v-if="$q.screen.lt.md" class="q-my-md" style="width: 162px" label="Speed" outlined dense options-dense
+    emit-value map-options :disable="!isStopped" v-model="annotationStore.videoPlaybackRate"
+    :options="videoPlaybackRateOptions" />
+  <!-- <KeyframeTable v-if="showEdit" /> -->
 </template>
 
 <script setup>
