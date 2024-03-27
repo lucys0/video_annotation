@@ -125,7 +125,7 @@ const columnList = [
   {
     name: 'start',
     align: 'center',
-    label: 'start',
+    label: 'start frame',
     field: 'start',
     sortable: true,
     sort: (a, b, rowA, rowB) => (a !== b ? a - b : rowA.end - rowB.end)
@@ -133,7 +133,7 @@ const columnList = [
   {
     name: 'end',
     align: 'center',
-    label: 'end',
+    label: 'end frame',
     field: 'end',
     sortable: true,
     sort: (a, b, rowA, rowB) => (a !== b ? a - b : rowA.start - rowB.start)
@@ -197,16 +197,17 @@ const handleAddAdvance = () => {
       ? annotationStore.rightCurrentFrame
       : annotationStore.rightCurrentFrame + 1
   // right frame -> next keyframe from action end frame + 1
-  let min = annotationStore.video.frames
-  let nearestKeyframe = nextFrame
-  for (let i = 0; i < annotationStore.keyframeList.length; i++) {
-    let distance = annotationStore.keyframeList[i] - nextFrame
-    if (distance > 0 && distance < min) {
-      min = distance
-      nearestKeyframe = annotationStore.keyframeList[i]
-    }
-  }
-  annotationStore.rightCurrentFrame = nearestKeyframe
+  // let min = annotationStore.video.frames
+  // let nearestKeyframe = nextFrame
+  // for (let i = 0; i < annotationStore.keyframeList.length; i++) {
+  //   let distance = annotationStore.keyframeList[i] - nextFrame
+  //   if (distance > 0 && distance < min) {
+  //     min = distance
+  //     nearestKeyframe = annotationStore.keyframeList[i]
+  //   }
+  // }
+  // annotationStore.rightCurrentFrame = nearestKeyframe
+  annotationStore.rightCurrentFrame = annotationStore.rightCurrentFrame + annotationStore.keyframeList[1] - annotationStore.keyframeList[0]
   // left frame -> left frame => action end frame + 1
   annotationStore.leftCurrentFrame = nextFrame
 }
