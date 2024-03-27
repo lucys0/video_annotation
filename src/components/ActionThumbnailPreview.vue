@@ -57,7 +57,7 @@
           icon="edit_location_alt"
           @click="handleSet"
         >
-          <q-tooltip>Set current left / right frame as this action's start / end</q-tooltip>
+          <q-tooltip>Set current left / right frame as this skill's start / end</q-tooltip>
         </q-btn>
         <q-btn
           class="text-black"

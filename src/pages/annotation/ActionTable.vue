@@ -93,7 +93,7 @@
               <q-tooltip>Locate to the action</q-tooltip>
             </q-btn>
             <q-btn flat dense icon="edit_location_alt" style="width: 100%" @click="handleSet(props.row)">
-              <q-tooltip>Set current left / right frame as this action's start / end</q-tooltip>
+              <q-tooltip>Set current left / right frame as this skill's start / end</q-tooltip>
             </q-btn>
             <q-btn flat dense icon="delete" color="negative" style="width: 100%"
               @click="handleDelete(props.row)"></q-btn>
