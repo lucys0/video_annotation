@@ -14,7 +14,8 @@ const DEFAULT_ANNOTATION = {
     frames: undefined,
     duration: undefined,
     height: undefined,
-    width: undefined
+    width: undefined,
+    name: undefined
   },
 
   objectAnnotationListMap: {},
@@ -25,7 +26,7 @@ const DEFAULT_ANNOTATION = {
   leftCurrentFrame: 0,
   rightCurrentFrame: 0,
   keyframeList: [],
-  mode: 'action', // 'object', 'region', 'skeleton', 'action'
+  mode: 'action', 
   skeletonTypeId: 0,
 
   priorityQueue: [],

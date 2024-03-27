@@ -48,7 +48,7 @@ export const useAnnotation = () => {
       }
     },
     handleSave: () => {
-      utils.prompt('Save', 'Enter annotation filename for saving', 'annotations').onOk((filename) => {
+      utils.prompt('Save', 'Enter annotation filename for saving', 'episode_').onOk((filename) => {
         const data = {
           version: PACKAGE_VERSION,
           annotation: annotationStore.exportAnnotation(),

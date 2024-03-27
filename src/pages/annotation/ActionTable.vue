@@ -24,7 +24,7 @@
           <q-tooltip>Bulk clear all actions</q-tooltip>
         </q-btn>
       </q-btn-group>
-      <div class="col-12" v-if="showFilter">
+      <!-- <div class="col-12" v-if="showFilter">
         <div class="q-mb-sm">
           <q-btn-group dense flat>
             <q-btn outline size="sm" icon="apps" label="select all" @click="handleSelectAll">
@@ -42,7 +42,7 @@
             <q-tooltip>{{ action.name }}</q-tooltip>
           </q-chip>
         </div>
-      </div>
+      </div> -->
     </template>
     <template v-slot:body="props">
       <q-tr :class="{
