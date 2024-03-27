@@ -60,10 +60,10 @@ const shortcuts = [
     keys: ['left-arrow', 'right-arrow'],
     description: 'previous / next frame'
   },
-  {
-    keys: ['up-arrow', 'down-arrow'],
-    description: 'cycle through the frame slider: right > range > left'
-  },
+  // {
+  //   keys: ['up-arrow', 'down-arrow'],
+  //   description: 'cycle through the frame slider: right > range > left'
+  // },
   {
     keys: ['page-up', 'page-down'],
     description: 'jump to previous / next 10% of video'
