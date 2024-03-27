@@ -18,8 +18,8 @@ const router = createRouter({
       component: () => import('~/pages/configuration/Configuration.vue')
     },
     {
-      name: 'preference',
-      path: '/preference',
+      name: 'setting',
+      path: '/setting',
       component: () => import('~/pages/preference/Preference.vue')
     },
     {

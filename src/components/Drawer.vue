@@ -61,8 +61,8 @@ const menuList = [
   // },
   {
     icon: 'dashboard',
-    label: 'Preference',
-    path: '/preference'
+    label: 'Setting',
+    path: '/setting'
   },
   {
     icon: 'help',

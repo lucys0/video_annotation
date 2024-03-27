@@ -299,8 +299,10 @@ const handleGoto = (row) => {
   }
 }
 const handleSet = (row) => {
-  row.start = utils.index2time(annotationStore.leftCurrentFrame)
-  row.end = utils.index2time(annotationStore.rightCurrentFrame)
+  // row.start = utils.index2time(annotationStore.leftCurrentFrame)
+  // row.end = utils.index2time(annotationStore.rightCurrentFrame)
+  row.start = annotationStore.leftCurrentFrame
+  row.end = annotationStore.rightCurrentFrame
 }
 const handleDelete = (row) => {
   utils.confirm('Are you sure to delete this action?').onOk(() => {

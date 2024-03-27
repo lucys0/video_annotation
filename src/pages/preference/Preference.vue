@@ -4,7 +4,7 @@
     class="q-gutter-md"
   >
     <div class="row">
-      <div class="text-h5">Preferences</div>
+      <div class="text-h5">Setting</div>
       <q-space></q-space>
       <q-btn
         class="q-px-md q-mr-md"
