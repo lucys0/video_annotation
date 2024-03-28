@@ -1,19 +1,10 @@
 <template>
-  <q-table dense flat :rows="annotationStore.actionAnnotationList" row-key="start" :columns="columnList"
-    :pagination="{ rowsPerPage: 0 }" :filter="actionFilterList" :filter-method="actionFilter" :sort-method="actionSort"
-    binary-state-sort>
+  <q-table dense flat :rows="reversedActionList" row-key="start" :columns="columnList" :pagination="{ rowsPerPage: 0 }"
+    :filter="actionFilterList" :filter-method="actionFilter" :sort-method="actionSort" binary-state-sort>
     <template v-slot:top="props">
       <div class="col-6 q-table__title">Video Segments</div>
       <q-space></q-space>
       <q-btn-group flat>
-        <!-- <q-btn
-          size="sm"
-          outline
-          :icon="showFilter ? 'expand_more' : 'expand_less'"
-          label="filter"
-          @click="showFilter = !showFilter"
-        ></q-btn> -->
-
         <q-btn size="sm" outline icon="new_label" label="add & advance" @click="handleAddAdvance">
           <q-tooltip>add current range and advance for next</q-tooltip>
         </q-btn>
@@ -24,25 +15,6 @@
           <q-tooltip>Bulk clear all actions</q-tooltip>
         </q-btn>
       </q-btn-group>
-      <!-- <div class="col-12" v-if="showFilter">
-        <div class="q-mb-sm">
-          <q-btn-group dense flat>
-            <q-btn outline size="sm" icon="apps" label="select all" @click="handleSelectAll">
-              <q-tooltip>select all actions</q-tooltip>
-            </q-btn>
-            <q-btn outline size="sm" icon="clear_all" label="clear all" @click="handleClearSelectedAll">
-              <q-tooltip>clear all actions</q-tooltip>
-            </q-btn>
-          </q-btn-group>
-        </div>
-        <div class="q-gutter-xs row truncate-chip-labels">
-          <q-chip v-for="action in configurationStore.actionLabelData" :key="action.id"
-            v-model:selected="actionFilterList[action.id]" :label="action.name" style="max-width: 150px" color="primary"
-            text-color="white">
-            <q-tooltip>{{ action.name }}</q-tooltip>
-          </q-chip>
-        </div>
-      </div> -->
     </template>
     <template v-slot:body="props">
       <q-tr :class="{
@@ -64,26 +36,6 @@
           <!-- {{ utils.toFixed2(props.row.end - props.row.start) }} -->
           {{ props.row.end - props.row.start }}
         </q-td>
-        <!-- <q-td>
-          <img v-if="configurationStore.actionLabelData.find((label) => label.id === props.row.action).thumbnail"
-            class="cursor-pointer rounded-borders vertical-middle float-left q-mr-md" style="height: 40px"
-            :src="configurationStore.actionLabelData.find((label) => label.id === props.row.action).thumbnail"
-            @click="handleThumbnailPreview(props)" alt="thumbnail" />
-          <q-select v-model="props.row.action" :options="actionOptionList" dense options-dense borderless emit-value
-            map-options @update:model-value="handleActionInput(props.row)"></q-select>
-        </q-td> -->
-        <!-- <q-td>
-          <q-select v-model="props.row.object" :options="objectOptionMap[props.row.action]" dense options-dense
-            borderless emit-value map-options></q-select>
-        </q-td> -->
-        <!-- <q-td auto-width class="cursor-pointer text-center">
-          <q-chip dense outline :style="{ 'border-color': props.row.color, color: props.row.color }">
-            {{ props.row.color.toUpperCase() }}
-          </q-chip>
-          <q-popup-edit auto-save v-model="props.row.color" title="Edit the action color">
-            <q-color v-model="props.row.color"></q-color>
-          </q-popup-edit>
-        </q-td> -->
         <q-td>
           <q-input v-model="props.row.description" dense borderless type="text"></q-input>
         </q-td>
@@ -128,6 +80,11 @@ const configurationStore = useConfigurationStore()
 const mainStore = useMainStore()
 const q = useQuasar()
 
+const reversedActionList = computed(() => {
+  // Creates a shallow copy of the array and reverses it
+  return [...annotationStore.actionAnnotationList].reverse();
+});
+
 const columnList = [
   {
     name: 'start',
@@ -150,24 +107,6 @@ const columnList = [
     align: 'center',
     label: 'duration'
   },
-  // {
-  //   name: 'action',
-  //   align: 'center',
-  //   label: 'action',
-  //   field: 'action'
-  // },
-  // {
-  //   name: 'object',
-  //   align: 'center',
-  //   label: 'object',
-  //   field: 'object'
-  // },
-  // {
-  //   name: 'color',
-  //   align: 'center',
-  //   label: 'color',
-  //   field: 'color'
-  // },
   {
     name: 'description',
     align: 'center',
@@ -186,8 +125,6 @@ const columnList = [
 const handleAdd = () => {
   annotationStore.actionAnnotationList.push(
     new ActionAnnotation(
-      // utils.index2time(annotationStore.leftCurrentFrame),
-      // utils.index2time(annotationStore.rightCurrentFrame),
       annotationStore.leftCurrentFrame,
       annotationStore.rightCurrentFrame,
       configurationStore.actionLabelData[0].id,
@@ -203,17 +140,6 @@ const handleAddAdvance = () => {
     annotationStore.rightCurrentFrame + 1 > annotationStore.video.frames
       ? annotationStore.rightCurrentFrame
       : annotationStore.rightCurrentFrame + 1
-  // right frame -> next keyframe from action end frame + 1
-  // let min = annotationStore.video.frames
-  // let nearestKeyframe = nextFrame
-  // for (let i = 0; i < annotationStore.keyframeList.length; i++) {
-  //   let distance = annotationStore.keyframeList[i] - nextFrame
-  //   if (distance > 0 && distance < min) {
-  //     min = distance
-  //     nearestKeyframe = annotationStore.keyframeList[i]
-  //   }
-  // }
-  // annotationStore.rightCurrentFrame = nearestKeyframe
   annotationStore.rightCurrentFrame = annotationStore.rightCurrentFrame + annotationStore.keyframeList[1] - annotationStore.keyframeList[0]
   // left frame -> left frame => action end frame + 1
   annotationStore.leftCurrentFrame = nextFrame
