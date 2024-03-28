@@ -97,6 +97,13 @@
             </q-btn>
             <q-btn flat dense icon="delete" color="negative" style="width: 100%"
               @click="handleDelete(props.row)"></q-btn>
+            <!-- if props.row.is_mistake is true, set the color to grey, else warning -->
+            <q-btn flat dense icon="cancel" :color="props.row.is_mistake ? 'grey' : 'warning'" style="width: 100%"
+              @click="handleSetMistake(props.row)">
+              <q-tooltip>
+                {{ props.row.is_mistake ? 'Set this segment as NOT a mistake' : 'Set this segment as a mistake' }}
+              </q-tooltip>
+            </q-btn>
           </q-btn-group>
         </q-td>
       </q-tr>
@@ -313,6 +320,20 @@ const handleDelete = (row) => {
       }
     }
   })
+}
+const handleSetMistake = (row) => {
+  // if not a mistake, set as a mistake
+  if (!row.is_mistake) {
+    utils.confirm('Are you sure to set this segment as a mistake?').onOk(() => {
+      row.is_mistake = true
+    })
+  }
+  // if a mistake, set as not a mistake
+  else {
+    utils.confirm('Are you sure to set this segment as NOT a mistake?').onOk(() => {
+      row.is_mistake = false
+    })
+  }
 }
 
 // keybindings

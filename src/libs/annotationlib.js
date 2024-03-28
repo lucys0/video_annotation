@@ -749,21 +749,24 @@ class ActionAnnotation {
    * @param object
    * @param color
    * @param description
+   * @param is_mistake
    */
-  constructor(start, end = null, action = null, object = null, color = null, description = null) {
+  constructor(start, end = null, action = null, object = null, color = null, description = null, is_mistake = false) {
     this.start = start
     this.end = end
     this.action = action
     this.object = object
     this.color = color
     this.description = description
+    this.is_mistake = is_mistake
   }
   // a function for stringfy to json
   toJSON() {
     return {
       start: this.start,
       end: this.end,
-      description: this.description
+      description: this.description,
+      is_mistake: this.is_mistake
     }
   }
 }

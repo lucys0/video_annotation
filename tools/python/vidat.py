@@ -352,6 +352,7 @@ class _ActionAnnotation:
         self._object = config.get_object_label_by_id(self._object_id)
         self._color = raw_annotation["color"]
         self._description = raw_annotation["description"]
+        self._is_mistake = raw_annotation["is_mistake"]
 
     def show(self):
         if not self.__cap:
@@ -412,6 +413,10 @@ class _ActionAnnotation:
     @property
     def description(self):
         return self._description
+    
+    @property
+    def is_mistake(self):
+        return self._is_mistake
 
     def __str__(self):
         info = {
@@ -421,10 +426,10 @@ class _ActionAnnotation:
             'action': self.action['name'],
             'object_id': self.object_id,
             'object': self.object['name'],
-            'description': self.description
+            'description': self.description,
+            'is_mistake': self.is_mistake
         }
         return f"Action: {info}"
-        # return ""
 
 
 class _AnnotationsBase:
