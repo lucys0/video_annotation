@@ -122,13 +122,13 @@ if (sensitivity) {
   }
 }
 if (defaultFps) {
-  const fps = parseInt(defaultFps, 50)
+  const fps = parseInt(defaultFps, 10)
   if (fps >= 1 && fps <= 60 && fps % 1 === 0) {
     preferenceStore.defaultFps = fps
   }
 }
 if (defaultFpk) {
-  const fpk = parseInt(defaultFpk, 300)
+  const fpk = parseInt(defaultFpk, 30)
   if (fpk >= 1 && fpk % 1 === 0) {
     preferenceStore.defaultFpk = fpk
   }

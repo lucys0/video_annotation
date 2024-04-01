@@ -1,6 +1,11 @@
 <template>
   <q-table dense flat :rows="reversedActionList" row-key="start" :columns="columnList" :pagination="{ rowsPerPage: 0 }"
     :filter="actionFilterList" :filter-method="actionFilter" :sort-method="actionSort" binary-state-sort>
+    <template v-slot:no-data>
+      <div class="text-center q-pa-md">
+        <span>&#9888;</span> No data
+      </div>
+    </template>
     <template v-slot:top="props">
       <div class="col-6 q-table__title">Video Segments</div>
       <q-space></q-space>
@@ -49,7 +54,6 @@
             </q-btn>
             <q-btn flat dense icon="delete" color="negative" style="width: 100%"
               @click="handleDelete(props.row)"></q-btn>
-            <!-- if props.row.is_mistake is true, set the color to grey, else warning -->
             <q-btn flat dense icon="cancel" :color="props.row.is_mistake ? 'grey' : 'warning'" style="width: 100%"
               @click="handleSetMistake(props.row)">
               <q-tooltip>
@@ -238,7 +242,7 @@ const handleSet = (row) => {
   row.end = annotationStore.rightCurrentFrame
 }
 const handleDelete = (row) => {
-  utils.confirm('Are you sure to delete this action?').onOk(() => {
+  utils.confirm('Are you sure to delete this segment?').onOk(() => {
     annotationStore.currentThumbnailAction = null
     for (let i in annotationStore.actionAnnotationList) {
       if (annotationStore.actionAnnotationList[i] === row) {

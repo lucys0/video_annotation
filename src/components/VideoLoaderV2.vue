@@ -34,7 +34,7 @@ onMounted(() => {
             if (!annotationStore.video.fps) annotationStore.video.fps = videoTrackInfo.fps
             if (!annotationStore.video.frames) annotationStore.video.frames = videoTrackInfo.frames
             // add name of the source video
-            if (!annotationStore.video.name) annotationStore.video.name = videoTrackInfo.name
+            // if (!annotationStore.video.name) annotationStore.video.name = videoTrackInfo.name
 
             const keyframeList = []
             if (annotationStore.keyframeList.length === 0) {
