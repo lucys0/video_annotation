@@ -96,14 +96,17 @@ const play = () => {
   isStopped.value = false
   videoPlayer.playbackRate = annotationStore.videoPlaybackRate
   videoPlayer.play()
-  const duration =
-    ((utils.index2time(annotationStore.rightCurrentFrame) - videoPlayer.currentTime) * 1000) / videoPlayer.playbackRate
+  // const duration =
+  //   ((utils.index2time(annotationStore.rightCurrentFrame) - videoPlayer.currentTime) * 1000) / videoPlayer.playbackRate
+  // duration is the entire video
+  const duration = (annotationStore.video.frames - annotationStore.rightCurrentFrame) * 1000
   videoPlayTimeout = setTimeout(() => {
     handleStop()
   }, duration)
   videoPlayInterval = setInterval(
     () => {
-      moveLeftFrame(1)
+      // moveLeftFrame(1)
+      moveRightFrame(1)
     },
     1000 / annotationStore.video.fps / videoPlayer.playbackRate
   )
@@ -144,7 +147,8 @@ const handlePlayPause = () => {
 }
 const handleStop = () => {
   stop()
-  annotationStore.leftCurrentFrame = lastLeftCurrentFrame
+  // annotationStore.leftCurrentFrame = lastLeftCurrentFrame
+  annotationStore.rightCurrentFrame = annotationStore.leftCurrentFrame + 1
 }
 
 // options

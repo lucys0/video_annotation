@@ -9,7 +9,7 @@
       :height="canvasHeight"
     />
     <VideoPlayer
-      v-if="position === 'left'"
+      v-if="position === 'right'"
       class="absolute-top"
     />
     <canvas
@@ -30,6 +30,15 @@
     />
     <q-btn
       v-if="position === 'left'"
+      class="bg-blue-grey-1 text-black absolute"
+      style="top: 5px; right: 5px"
+      round
+      flat
+      :icon="mainStore.zoom ? 'zoom_out' : 'zoom_in'"
+      @click="handleZoomClick"
+    ></q-btn>
+    <q-btn
+      v-if="position === 'right'"
       class="bg-blue-grey-1 text-black absolute"
       style="top: 5px; right: 5px"
       round

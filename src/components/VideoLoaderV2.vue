@@ -38,7 +38,7 @@ onMounted(() => {
 
             const keyframeList = []
             if (annotationStore.keyframeList.length === 0) {
-              for (let i = 0; i < annotationStore.video.frames; i += preferenceStore.defaultFpk) {
+              for (let i = 0; i < annotationStore.video.frames; i += 1) {
                 keyframeList.push(i)
               }
               annotationStore.keyframeList = keyframeList
