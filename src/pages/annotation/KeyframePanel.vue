@@ -4,7 +4,7 @@
       <q-btn-group flat>
         <q-btn outline :icon="isPaused ? 'play_arrow' : 'pause'" @click="handlePlayPause"
           :disable="!annotationStore.video.frames">
-          <q-tooltip>{{ isPaused ? 'play (p)' : 'pause (p)' }}</q-tooltip>
+          <q-tooltip>{{ isPaused ? 'play (space)' : 'pause (space)' }}</q-tooltip>
         </q-btn>
         <q-btn outline icon="stop" :disabled="!showVideoPlayer" @click="handleStop">
           <q-tooltip v-if="showVideoPlayer">stop</q-tooltip>
@@ -306,9 +306,10 @@ const handleKeyup = (event) => {
   if (event.target.nodeName.toLowerCase() === 'input' || event.target.tabIndex === 0) {
     return false
   }
-  if (event.code === 'KeyP') {
-    handlePlayPause()
-  }
+  // if (event.code === 'Space') {
+  //   event.preventDefault();
+  //   handlePlayPause()
+  // }
 }
 const currentFocus = ref('right') // 'left', 'right', 'range'
 const handleInput = (value) => {
@@ -365,6 +366,10 @@ const handleKeydown = (event) => {
       range: 'right'
     }[currentFocus.value]
   }
+  else if (event.code === 'Space' && event.target.nodeName.toLowerCase() !== 'input' && event.target.tabIndex !== 0) {
+    event.preventDefault();
+    handlePlayPause();
+  }
   // } else if (event.code === 'PageUp') {
   //   event.preventDefault()
   //   const delta = Math.round(-0.1 * annotationStore.video.frames)
@@ -395,7 +400,12 @@ const handleKeydown = (event) => {
   // use enter to pause the video
   if (event.code === 'Enter') {
     handlePlayPause()
+    // if playing, pause
+    // if (!isPaused.value) {
+    //   handlePlayPause()
+    // }
   }
+
 }
 onMounted(() => {
   window.addEventListener('keyup', handleKeyup, true)

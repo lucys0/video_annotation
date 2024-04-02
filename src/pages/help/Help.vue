@@ -49,7 +49,7 @@
 <script setup>
 const shortcuts = [
   {
-    keys: ['p'],
+    keys: ['space'],
     description: 'play / pause video segment'
   },
   // {
