@@ -9,14 +9,6 @@
         <q-btn outline icon="stop" :disabled="!showVideoPlayer" @click="handleStop">
           <q-tooltip v-if="showVideoPlayer">stop</q-tooltip>
         </q-btn>
-        <!-- <q-btn
-          outline
-          :icon="showEdit ? 'done' : 'edit'"
-          @click="showEdit = !showEdit"
-          :disable="!annotationStore.video.frames"
-        >
-          <q-tooltip>{{ showEdit ? 'done' : 'edit' }}</q-tooltip>
-        </q-btn> -->
       </q-btn-group>
     </div>
     <div class="col-grow" :class="[{ 'col-12': $q.screen.lt.md, 'q-px-lg': !$q.screen.lt.md }]"
@@ -33,39 +25,12 @@
         :disable="!annotationStore.video.frames" />
       <ActionIndicator v-if="preferenceStore.actions" style="margin-top: -10px" />
     </div>
-    <!-- <q-btn-group flat>
-      <q-btn
-        outline
-        icon="keyboard_arrow_left"
-        @click="handlePreviousKeyframe"
-        :disable="!annotationStore.video.frames"
-      >
-        <q-tooltip>previous keyframe (&lt)</q-tooltip>
-      </q-btn>
-      <q-btn
-        outline
-        icon="gps_fixed"
-        @click="handleNearestKeyframe"
-        :disable="!annotationStore.video.frames"
-      >
-        <q-tooltip>locate nearest keyframe</q-tooltip>
-      </q-btn>
-      <q-btn
-        outline
-        icon="keyboard_arrow_right"
-        @click="handleNextKeyframe"
-        :disable="!annotationStore.video.frames"
-      >
-        <q-tooltip>next keyframe (&gt)</q-tooltip>
-      </q-btn>
-    </q-btn-group> -->
     <q-select v-if="!$q.screen.lt.md" class="q-my-md" label=">>" outlined dense options-dense emit-value map-options
       :disable="!isStopped" v-model="annotationStore.videoPlaybackRate" :options="videoPlaybackRateOptions" />
   </div>
   <q-select v-if="$q.screen.lt.md" class="q-my-md" style="width: 162px" label="Speed" outlined dense options-dense
     emit-value map-options :disable="!isStopped" v-model="annotationStore.videoPlaybackRate"
     :options="videoPlaybackRateOptions" />
-  <!-- <KeyframeTable v-if="showEdit" /> -->
 </template>
 
 <script setup>
@@ -192,73 +157,14 @@ const nearestKeyframe = (currentFrame) => {
   }
   return nearestKeyframe
 }
-const handlePreviousKeyframe = () => {
-  // base on right most one
-  const leftCurrentKeyFrame = nearestKeyframe(annotationStore.leftCurrentFrame)
-  const rightCurrentKeyFrame = nearestKeyframe(annotationStore.rightCurrentFrame)
-  const leftCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(leftCurrentKeyFrame)
-  const rightCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(rightCurrentKeyFrame)
-  if (leftCurrentKeyFrameIndex <= 0 || rightCurrentKeyFrameIndex <= 0) {
-    annotationStore.leftCurrentFrame = 0
-    annotationStore.rightCurrentFrame = annotationStore.keyframeList[1] || 0
-  } else if (leftCurrentKeyFrameIndex === rightCurrentKeyFrameIndex) {
-    annotationStore.leftCurrentFrame = annotationStore.keyframeList[rightCurrentKeyFrameIndex - 1]
-    annotationStore.rightCurrentFrame = rightCurrentKeyFrame
-  } else if (leftCurrentKeyFrameIndex < rightCurrentKeyFrameIndex) {
-    if (rightCurrentKeyFrameIndex - 2 < 0) {
-      annotationStore.leftCurrentFrame = 0
-      annotationStore.rightCurrentFrame = annotationStore.keyframeList[1] || 0
-    } else {
-      annotationStore.leftCurrentFrame = annotationStore.keyframeList[rightCurrentKeyFrameIndex - 2]
-      annotationStore.rightCurrentFrame = annotationStore.keyframeList[rightCurrentKeyFrameIndex - 1]
-    }
-  } else {
-    annotationStore.leftCurrentFrame = rightCurrentKeyFrame
-    annotationStore.rightCurrentFrame = leftCurrentKeyFrame
+
+// Helper function to update video player current time
+const updateVideoPlayerCurrentTime = (frame) => {
+  const videoPlayer = document.getElementById('video-player');
+  if (videoPlayer) {
+    videoPlayer.currentTime = utils.index2time(frame);
   }
-}
-const handleNearestKeyframe = () => {
-  const leftCurrentKeyFrame = nearestKeyframe(annotationStore.leftCurrentFrame)
-  const rightCurrentKeyFrame = nearestKeyframe(annotationStore.rightCurrentFrame)
-  const leftCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(leftCurrentKeyFrame)
-  const rightCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(rightCurrentKeyFrame)
-  if (rightCurrentKeyFrameIndex - leftCurrentKeyFrameIndex === 1) {
-    annotationStore.leftCurrentFrame = leftCurrentKeyFrame
-    annotationStore.rightCurrentFrame = rightCurrentKeyFrame
-  } else {
-    annotationStore.leftCurrentFrame = leftCurrentKeyFrame
-    annotationStore.rightCurrentFrame =
-      annotationStore.keyframeList[leftCurrentKeyFrameIndex + 1] || leftCurrentKeyFrame
-  }
-}
-const handleNextKeyframe = () => {
-  // base on left most one
-  const leftCurrentKeyFrame = nearestKeyframe(annotationStore.leftCurrentFrame)
-  const rightCurrentKeyFrame = nearestKeyframe(annotationStore.rightCurrentFrame)
-  const leftCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(leftCurrentKeyFrame)
-  const rightCurrentKeyFrameIndex = annotationStore.keyframeList.indexOf(rightCurrentKeyFrame)
-  const lastIndex = annotationStore.keyframeList.length - 1
-  if (leftCurrentKeyFrameIndex >= lastIndex || rightCurrentKeyFrameIndex >= lastIndex) {
-    annotationStore.leftCurrentFrame =
-      lastIndex - 1 >= 0 ? annotationStore.keyframeList[lastIndex - 1] : annotationStore.keyframeList[lastIndex]
-    annotationStore.rightCurrentFrame = annotationStore.keyframeList[lastIndex]
-  } else if (leftCurrentKeyFrameIndex === rightCurrentKeyFrameIndex) {
-    annotationStore.leftCurrentFrame = leftCurrentKeyFrame
-    annotationStore.rightCurrentFrame = annotationStore.keyframeList[leftCurrentKeyFrameIndex + 1]
-  } else if (leftCurrentKeyFrameIndex < rightCurrentKeyFrameIndex) {
-    if (leftCurrentKeyFrameIndex + 2 > lastIndex) {
-      annotationStore.leftCurrentFrame =
-        lastIndex - 1 >= 0 ? annotationStore.keyframeList[lastIndex - 1] : annotationStore.keyframeList[lastIndex]
-      annotationStore.rightCurrentFrame = annotationStore.keyframeList[lastIndex]
-    } else {
-      annotationStore.leftCurrentFrame = annotationStore.keyframeList[leftCurrentKeyFrameIndex + 1]
-      annotationStore.rightCurrentFrame = annotationStore.keyframeList[leftCurrentKeyFrameIndex + 2]
-    }
-  } else {
-    annotationStore.leftCurrentFrame = leftCurrentKeyFrame
-    annotationStore.rightCurrentFrame = annotationStore.keyframeList[leftCurrentKeyFrameIndex + 1]
-  }
-}
+};
 
 // key bindings
 const moveLeftFrame = (delta) => {
@@ -271,6 +177,7 @@ const moveLeftFrame = (delta) => {
     } else {
       annotationStore.leftCurrentFrame = newFrame
     }
+    updateVideoPlayerCurrentTime(annotationStore.leftCurrentFrame); // Update video player
   }
 }
 const moveRightFrame = (delta) => {
@@ -283,6 +190,7 @@ const moveRightFrame = (delta) => {
     } else {
       annotationStore.rightCurrentFrame = newFrame
     }
+    updateVideoPlayerCurrentTime(annotationStore.rightCurrentFrame); // Update video player
   }
 }
 const moveRange = (interval) => {
@@ -299,6 +207,7 @@ const moveRange = (interval) => {
       annotationStore.leftCurrentFrame += interval
       annotationStore.rightCurrentFrame += interval
     }
+    updateVideoPlayerCurrentTime(annotationStore.leftCurrentFrame); // Assuming left frame as the reference for updating time
   }
 }
 const handleKeyup = (event) => {
@@ -370,33 +279,7 @@ const handleKeydown = (event) => {
     event.preventDefault();
     handlePlayPause();
   }
-  // } else if (event.code === 'PageUp') {
-  //   event.preventDefault()
-  //   const delta = Math.round(-0.1 * annotationStore.video.frames)
-  //   if (currentFocus.value === 'range') {
-  //     moveRange(delta)
-  //   } else if (currentFocus.value === 'left') {
-  //     moveLeftFrame(delta)
-  //   } else if (currentFocus.value === 'right') {
-  //     moveRightFrame(delta)
-  //   }
-  // } else if (event.code === 'PageDown') {
-  //   event.preventDefault()
-  //   const delta = Math.round(0.1 * annotationStore.video.frames)
-  //   if (currentFocus.value === 'range') {
-  //     moveRange(delta)
-  //   } else if (currentFocus.value === 'left') {
-  //     moveLeftFrame(delta)
-  //   } else if (currentFocus.value === 'right') {
-  //     moveRightFrame(delta)
-  //   }
-  // } else if (event.code === 'Comma') {
-  //   event.preventDefault()
-  //   handlePreviousKeyframe()
-  // } else if (event.code === 'Period') {
-  //   event.preventDefault()
-  //   handleNextKeyframe()
-  // }
+
   // use enter to pause the video
   if (event.code === 'Enter') {
     handlePlayPause()
