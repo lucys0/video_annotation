@@ -64,13 +64,13 @@ const shortcuts = [
   //   keys: ['up-arrow', 'down-arrow'],
   //   description: 'cycle through the frame slider: right > range > left'
   // },
+  // {
+  //   keys: ['page-up', 'page-down'],
+  //   description: 'jump to previous / next 10% of video'
+  // },
   {
-    keys: ['page-up', 'page-down'],
-    description: 'jump to previous / next 10% of video'
-  },
-  {
-    keys: ['plus (+)'],
-    description: 'add a new video segment'
+    keys: ['enter'],
+    description: 'add a new video segment & advance, and automatically pause the video. If pressed again, save the current segement and continue playing the video.'
   },
   // {
   //   keys: ['delete'],

@@ -310,11 +310,12 @@ const handleKeyup = (event) => {
     handlePlayPause()
   }
 }
-const currentFocus = ref('range') // 'left', 'right', 'range'
+const currentFocus = ref('right') // 'left', 'right', 'range'
 const handleInput = (value) => {
-  if (currentFrameRange.value.min !== value.min && currentFrameRange.value.max !== value.max) {
-    currentFocus.value = 'range'
-  } else if (currentFrameRange.value.min !== value.min) {
+  // if (currentFrameRange.value.min !== value.min && currentFrameRange.value.max !== value.max) {
+  //   currentFocus.value = 'range'
+  // } else 
+  if (currentFrameRange.value.min !== value.min) {
     currentFocus.value = 'left'
   } else {
     currentFocus.value = 'right'
@@ -323,13 +324,13 @@ const handleInput = (value) => {
 }
 const handleKeydown = (event) => {
   event.stopPropagation()
-  if (showVideoPlayer.value) {
-    return
-  }
-  if (event.target.nodeName.toLowerCase() === 'input') {
-    return false
-  }
-  if (event.code === 'ArrowLeft' || event.code === 'KeyA') {
+  // if (showVideoPlayer.value) {
+  //   return
+  // }
+  // if (event.target.nodeName.toLowerCase() === 'input') {
+  //   return false
+  // }
+  if (event.code === 'ArrowLeft') {
     event.preventDefault()
     const delta = -1
     if (currentFocus.value === 'range') {
@@ -339,7 +340,7 @@ const handleKeydown = (event) => {
     } else if (currentFocus.value === 'right') {
       moveRightFrame(delta)
     }
-  } else if (event.code === 'ArrowRight' || event.code === 'KeyD') {
+  } else if (event.code === 'ArrowRight') {
     event.preventDefault()
     const delta = 1
     if (currentFocus.value === 'range') {
@@ -349,46 +350,51 @@ const handleKeydown = (event) => {
     } else if (currentFocus.value === 'right') {
       moveRightFrame(delta)
     }
-  } else if (event.code === 'ArrowUp' || event.code === 'KeyW') {
+  } else if (event.code === 'ArrowUp') {
     event.preventDefault()
     if (currentFocus.value === 'left') return
     currentFocus.value = {
       range: 'left',
       right: 'range'
     }[currentFocus.value]
-  } else if (event.code === 'ArrowDown' || event.code === 'KeyS') {
+  } else if (event.code === 'ArrowDown') {
     event.preventDefault()
     if (currentFocus.value === 'right') return
     currentFocus.value = {
       left: 'range',
       range: 'right'
     }[currentFocus.value]
-  } else if (event.code === 'PageUp') {
-    event.preventDefault()
-    const delta = Math.round(-0.1 * annotationStore.video.frames)
-    if (currentFocus.value === 'range') {
-      moveRange(delta)
-    } else if (currentFocus.value === 'left') {
-      moveLeftFrame(delta)
-    } else if (currentFocus.value === 'right') {
-      moveRightFrame(delta)
-    }
-  } else if (event.code === 'PageDown') {
-    event.preventDefault()
-    const delta = Math.round(0.1 * annotationStore.video.frames)
-    if (currentFocus.value === 'range') {
-      moveRange(delta)
-    } else if (currentFocus.value === 'left') {
-      moveLeftFrame(delta)
-    } else if (currentFocus.value === 'right') {
-      moveRightFrame(delta)
-    }
-  } else if (event.code === 'Comma') {
-    event.preventDefault()
-    handlePreviousKeyframe()
-  } else if (event.code === 'Period') {
-    event.preventDefault()
-    handleNextKeyframe()
+  }
+  // } else if (event.code === 'PageUp') {
+  //   event.preventDefault()
+  //   const delta = Math.round(-0.1 * annotationStore.video.frames)
+  //   if (currentFocus.value === 'range') {
+  //     moveRange(delta)
+  //   } else if (currentFocus.value === 'left') {
+  //     moveLeftFrame(delta)
+  //   } else if (currentFocus.value === 'right') {
+  //     moveRightFrame(delta)
+  //   }
+  // } else if (event.code === 'PageDown') {
+  //   event.preventDefault()
+  //   const delta = Math.round(0.1 * annotationStore.video.frames)
+  //   if (currentFocus.value === 'range') {
+  //     moveRange(delta)
+  //   } else if (currentFocus.value === 'left') {
+  //     moveLeftFrame(delta)
+  //   } else if (currentFocus.value === 'right') {
+  //     moveRightFrame(delta)
+  //   }
+  // } else if (event.code === 'Comma') {
+  //   event.preventDefault()
+  //   handlePreviousKeyframe()
+  // } else if (event.code === 'Period') {
+  //   event.preventDefault()
+  //   handleNextKeyframe()
+  // }
+  // use enter to pause the video
+  if (event.code === 'Enter') {
+    handlePlayPause()
   }
 }
 onMounted(() => {
