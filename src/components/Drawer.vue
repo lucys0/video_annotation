@@ -12,7 +12,7 @@
       <q-list class="full-height">
         <DrawerVideoControl />
         <q-separator />
-        <DrawerAnnotationControl />
+        <!-- <DrawerAnnotationControl /> -->
         <q-separator />
         <q-item
           clickable

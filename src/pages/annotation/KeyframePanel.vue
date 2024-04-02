@@ -9,6 +9,9 @@
         <q-btn outline icon="stop" :disabled="!showVideoPlayer" @click="handleStop">
           <q-tooltip v-if="showVideoPlayer">stop</q-tooltip>
         </q-btn>
+        <q-btn outline icon="file_download" :disabled="!showVideoPlayer" @click="handleSave">
+          <q-tooltip v-if="annotationStore.hasVideo">save (command+s)</q-tooltip>
+        </q-btn>
       </q-btn-group>
     </div>
     <div class="col-grow" :class="[{ 'col-12': $q.screen.lt.md, 'q-px-lg': !$q.screen.lt.md }]"
@@ -42,9 +45,11 @@ import ActionIndicator from '~/pages/annotation/components/ActionIndicator.vue'
 import KeyframeTable from '~/pages/annotation/components/KeyframeTable.vue'
 import { useAnnotationStore } from '~/store/annotation.js'
 import { usePreferenceStore } from '~/store/preference.js'
+import { useAnnotation } from '~/hooks/annotation.js'
 
 const annotationStore = useAnnotationStore()
 const preferenceStore = usePreferenceStore()
+const { handleSave} = useAnnotation()
 
 // left buttons
 const isPaused = ref(true)
@@ -279,6 +284,12 @@ const handleKeydown = (event) => {
     event.preventDefault();
     handlePlayPause();
   }
+  // use command + s for save
+  else if (event.code === 'KeyS' && (event.ctrlKey || event.metaKey)) {
+    event.preventDefault();
+    handleSave();
+  }
+
 
   // use enter to pause the video
   if (event.code === 'Enter') {

@@ -70,7 +70,13 @@ const shortcuts = [
   // },
   {
     keys: ['enter'],
-    description: 'add a new video segment & advance, and automatically pause the video. If pressed again, save the current segement and continue playing the video.'
+    description: 'add a new video segment & advance'
+    // , and automatically pause the video. If pressed again, save the current segement and continue playing the video.
+  },
+  // command/control + s for save
+  {
+    keys: ['command + s', 'ctrl + s'],
+    description: 'save annotations'
   },
   // {
   //   keys: ['delete'],
