@@ -169,22 +169,11 @@ const handleClearAll = () => {
 }
 
 /// filter
-const showFilter = ref(false)
 const actionFilterList = ref({})
 configurationStore.actionLabelData.forEach((label) => {
   actionFilterList.value[label.id] = true
 })
-const handleSelectAll = () => {
-  configurationStore.actionLabelData.forEach((label) => {
-    actionFilterList.value[label.id] = true
-  })
-}
-const handleClearSelectedAll = () => {
-  configurationStore.actionLabelData.forEach((label) => {
-    actionFilterList.value[label.id] = false
-  })
-  actionFilterList.value[0] = true
-}
+
 const actionFilter = (rows, filter) => {
   return rows.filter((row) => filter[row.action])
 }
@@ -201,14 +190,7 @@ const actionSort = (rows, sortBy, descending) => {
 }
 
 // body
-const actionOptionList = computed(() =>
-  configurationStore.actionLabelData.map((label) => {
-    return {
-      label: label.name,
-      value: label.id
-    }
-  })
-)
+
 const objectOptionMap = ref({})
 for (let action of configurationStore.actionLabelData) {
   const objectOptionList = []
@@ -221,16 +203,6 @@ for (let action of configurationStore.actionLabelData) {
     }
   }
   objectOptionMap.value[action.id] = objectOptionList
-}
-const handleThumbnailPreview = (props) => {
-  const { row } = props
-  if (configurationStore.actionLabelData.find((label) => label.id === row.action).thumbnail) {
-    annotationStore.currentThumbnailAction = annotationStore.currentThumbnailAction === row ? null : row
-  }
-}
-const handleActionInput = (row) => {
-  row.color = configurationStore.actionLabelData.find((label) => label.id === row.action).color
-  row.object = configurationStore.actionLabelData.find((label) => label.id === row.action).objects[0]
 }
 
 /// operation
