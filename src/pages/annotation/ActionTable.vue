@@ -42,7 +42,8 @@
           {{ props.row.end - props.row.start }}
         </q-td>
         <q-td>
-          <q-input v-model="props.row.description" dense borderless type="text"></q-input>
+          <q-input v-model="props.row.description" dense borderless type="text" class="description-input"
+            :key="'desc-input-' + props.row.start"></q-input>
         </q-td>
         <q-td auto-width>
           <q-btn-group spread flat>
@@ -78,6 +79,7 @@ import utils from '~/libs/utils.js'
 import { useAnnotationStore } from '~/store/annotation.js'
 import { useConfigurationStore } from '~/store/configuration.js'
 import { useMainStore } from '~/store/index.js'
+import { nextTick } from 'vue';
 
 const annotationStore = useAnnotationStore()
 const configurationStore = useConfigurationStore()
@@ -137,6 +139,13 @@ const handleAdd = () => {
       ''
     )
   )
+
+  nextTick(() => {
+    const inputs = document.querySelectorAll('.description-input');
+    if (inputs.length) {
+      inputs[0].focus();
+    }
+  });
 }
 const handleAddAdvance = () => {
   handleAdd()
