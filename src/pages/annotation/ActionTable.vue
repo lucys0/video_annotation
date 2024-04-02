@@ -16,6 +16,9 @@
         <q-btn size="sm" outline icon="add" label="add" @click="handleAdd">
           <q-tooltip>add current range (+)</q-tooltip>
         </q-btn>
+        <q-btn size="sm" outline icon="arrow_forward" label="advance" @click="handleAdvance">
+          <q-tooltip>advance current range</q-tooltip>
+        </q-btn>
         <q-btn size="sm" outline icon="clear_all" label="clear" @click="handleClearAll">
           <q-tooltip>Bulk clear all actions</q-tooltip>
         </q-btn>
@@ -48,7 +51,7 @@
         <q-td auto-width>
           <q-btn-group spread flat>
             <q-btn flat dense icon="gps_fixed" style="width: 100%" @click="handleGoto(props.row)">
-              <q-tooltip>Locate to the action</q-tooltip>
+              <q-tooltip>Locate to the skill</q-tooltip>
             </q-btn>
             <q-btn flat dense icon="edit_location_alt" style="width: 100%" @click="handleSet(props.row)">
               <q-tooltip>Set current left / right frame as this skill's start / end</q-tooltip>
@@ -139,7 +142,7 @@ const handleAdd = () => {
       ''
     )
   )
-
+  // automatically move to the focus to the description field
   nextTick(() => {
     const inputs = document.querySelectorAll('.description-input');
     if (inputs.length) {
@@ -147,15 +150,16 @@ const handleAdd = () => {
     }
   });
 }
+
+// a function for advance
+const handleAdvance = () => {
+  annotationStore.leftCurrentFrame = annotationStore.rightCurrentFrame + 1
+  annotationStore.rightCurrentFrame = annotationStore.rightCurrentFrame + 1
+}
+
 const handleAddAdvance = () => {
   handleAdd()
-  const nextFrame =
-    annotationStore.rightCurrentFrame + 1 > annotationStore.video.frames
-      ? annotationStore.rightCurrentFrame
-      : annotationStore.rightCurrentFrame + 1
-  annotationStore.rightCurrentFrame = annotationStore.rightCurrentFrame + annotationStore.keyframeList[1] - annotationStore.keyframeList[0]
-  // left frame -> left frame => action end frame + 1
-  annotationStore.leftCurrentFrame = nextFrame
+  handleAdvance()
 }
 const handleClearAll = () => {
   if (annotationStore.actionAnnotationList.length !== 0) {
@@ -221,6 +225,7 @@ const handleSet = (row) => {
   // row.end = utils.index2time(annotationStore.rightCurrentFrame)
   row.start = annotationStore.leftCurrentFrame
   row.end = annotationStore.rightCurrentFrame
+  handleAdvance()
 }
 const handleDelete = (row) => {
   utils.confirm('Are you sure to delete this segment?').onOk(() => {
