@@ -29,7 +29,7 @@
       <ActionIndicator v-if="preferenceStore.actions" style="margin-top: -10px" />
     </div>
     <q-select v-if="!$q.screen.lt.md" class="q-my-md" label=">>" outlined dense options-dense emit-value map-options
-      :disable="!isStopped" v-model="annotationStore.videoPlaybackRate" :options="videoPlaybackRateOptions" />
+      v-model="annotationStore.videoPlaybackRate" :options="videoPlaybackRateOptions" />
   </div>
   <q-select v-if="$q.screen.lt.md" class="q-my-md" style="width: 162px" label="Speed" outlined dense options-dense
     emit-value map-options :disable="!isStopped" v-model="annotationStore.videoPlaybackRate"
