@@ -149,19 +149,6 @@ const videoPlaybackRateOptions = [
   }
 ]
 
-// right buttons
-const nearestKeyframe = (currentFrame) => {
-  let min = annotationStore.video.frames
-  let nearestKeyframe = currentFrame
-  for (let i = 0; i < annotationStore.keyframeList.length; i++) {
-    let distance = Math.abs(currentFrame - annotationStore.keyframeList[i])
-    if (distance < min) {
-      min = distance
-      nearestKeyframe = annotationStore.keyframeList[i]
-    }
-  }
-  return nearestKeyframe
-}
 
 // Helper function to update video player current time
 const updateVideoPlayerCurrentTime = (frame) => {
@@ -220,16 +207,9 @@ const handleKeyup = (event) => {
   if (event.target.nodeName.toLowerCase() === 'input' || event.target.tabIndex === 0) {
     return false
   }
-  // if (event.code === 'Space') {
-  //   event.preventDefault();
-  //   handlePlayPause()
-  // }
 }
 const currentFocus = ref('right') // 'left', 'right', 'range'
 const handleInput = (value) => {
-  // if (currentFrameRange.value.min !== value.min && currentFrameRange.value.max !== value.max) {
-  //   currentFocus.value = 'range'
-  // } else 
   if (currentFrameRange.value.min !== value.min) {
     currentFocus.value = 'left'
   } else {
@@ -239,12 +219,6 @@ const handleInput = (value) => {
 }
 const handleKeydown = (event) => {
   event.stopPropagation()
-  // if (showVideoPlayer.value) {
-  //   return
-  // }
-  // if (event.target.nodeName.toLowerCase() === 'input') {
-  //   return false
-  // }
   if (event.code === 'ArrowLeft') {
     event.preventDefault()
     const delta = -1
@@ -293,10 +267,6 @@ const handleKeydown = (event) => {
   else if (event.code === 'Enter') {
     event.preventDefault();
     handlePlayPause()
-    // if playing, pause
-    // if (!isPaused.value) {
-    //   handlePlayPause()
-    // }
   }
 
 }

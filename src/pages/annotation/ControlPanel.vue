@@ -44,19 +44,6 @@
         <!-- <q-item-section class="text-center">Mode</q-item-section> -->
         <q-item-section class="text-center"> </q-item-section>
       </q-item>
-      <!-- <q-item>
-        <q-item-section>
-          <q-select
-            v-model="annotationStore.mode"
-            outlined
-            stack-label
-            dense
-            options-dense
-            :options="modeOptions"
-            :readonly="modeOptions.length === 1"
-          ></q-select>
-        </q-item-section>
-      </q-item> -->
       <q-item v-if="annotationStore.mode === 'skeleton'">
         <q-item-section>
           <q-select v-model="annotationStore.skeletonTypeId" outlined stack-label dense options-dense map-options
@@ -86,26 +73,6 @@
       </q-item>
     </div>
     <div>
-      <!-- <q-item dense>
-        <q-item-section class="text-center">Options</q-item-section>
-      </q-item>
-      <q-item>
-        <q-item-section>
-          <q-toggle
-            v-model="preferenceStore.muted"
-            label="Muted"
-          />
-          <q-toggle
-            v-model="preferenceStore.grayscale"
-            label="Grayscale"
-          />
-          <q-toggle
-            v-if="!$q.platform.has.touch && annotationStore.mode !== 'action'"
-            v-model="preferenceStore.showPopup"
-            label="Show Popup"
-          />
-        </q-item-section>
-      </q-item> -->
     </div>
   </q-list>
 </template>

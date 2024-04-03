@@ -12,7 +12,6 @@
       <q-list class="full-height">
         <DrawerVideoControl />
         <q-separator />
-        <!-- <DrawerAnnotationControl /> -->
         <q-separator />
         <q-item
           clickable
@@ -45,20 +44,9 @@ import VersionBadge from '~/components/VersionBadge.vue'
 import { useAnnotationStore } from '~/store/annotation.js'
 import { useMainStore } from '~/store/index.js'
 
-import DrawerAnnotationControl from './DrawerAnnotationControl.vue'
 import DrawerVideoControl from './DrawerVideoControl.vue'
 
 const menuList = [
-  // {
-  //   icon: 'video_label',
-  //   label: 'Annotation',
-  //   path: '/'
-  // },
-  // {
-  //   icon: 'settings',
-  //   label: 'Configuration',
-  //   path: '/configuration'
-  // },
   {
     icon: 'dashboard',
     label: 'Setting',
@@ -69,11 +57,6 @@ const menuList = [
     label: 'Help',
     path: '/help'
   },
-  // {
-  //   icon: 'book',
-  //   label: 'About',
-  //   path: '/about'
-  // }
 ]
 const { drawer } = storeToRefs(useMainStore())
 const annotationStore = useAnnotationStore()

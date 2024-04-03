@@ -11,10 +11,8 @@
             </q-avatar>
           </a>
           <a class="vertical-middle" href="" target="_blank">
-            <!-- TODO: add link -->
             Video Annotation
           </a>
-          <!-- <span class="vertical-middle">Video Annotation Tool</span> -->
         </q-toolbar-title>
         <q-circular-progress v-if="annotationStore.hasVideo && annotationStore.isCaching" class="q-mx-sm" show-value
           font-size="10px" :value="progress" size="30px" :thickness="0.2" color="primary" track-color="grey-3">
@@ -30,8 +28,7 @@
     <q-page-container>
       <q-page padding>
         <template v-if="annotationStore.hasVideo">
-          <VideoLoaderV2 v-if="useV2" />
-          <VideoLoaderV1 v-else />
+          <VideoLoaderV2 />
         </template>
         <router-view></router-view>
       </q-page>
@@ -40,8 +37,8 @@
       <q-toolbar>
         <q-toolbar-title class="text-center text-caption" :class="$q.dark.isActive ? 'text-gray-4' : 'text-black'">
           <!-- Copyright © 2024, -->
-          <a href="https://github.com/lucys0/video_annotation" target="_blank">
-            ...in development </a>
+          <!-- <a href="https://github.com/lucys0/video_annotation" target="_blank">
+            ...in development </a> -->
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
@@ -52,7 +49,6 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import VideoLoaderV1 from '~/components/VideoLoaderV1.vue'
 import VideoLoaderV2 from '~/components/VideoLoaderV2.vue'
 import { useAnnotationStore } from '~/store/annotation.js'
 import { useConfigurationStore } from '~/store/configuration.js'

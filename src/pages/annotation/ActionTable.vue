@@ -256,7 +256,6 @@ const handleSetMistake = (row) => {
 const handleKeydown = (event) => {
   event.stopPropagation()
   if (event.target.nodeName.toLowerCase() === 'input') {
-    // return false
     // exit the input mode if the key is enter
     if (event.code === 'Enter') {
       event.target.blur()

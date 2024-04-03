@@ -46,33 +46,6 @@
       :icon="mainStore.zoom ? 'zoom_out' : 'zoom_in'"
       @click="handleZoomClick"
     ></q-btn>
-    <!-- <div
-      class="absolute bg-black text-white"
-      v-if="actionList && actionList.length"
-      :style="actionIndicatorStyle"
-      style="padding: 4px; font-size: 20px; opacity: 0.8"
-    >
-      Action:
-      <span
-        v-for="(action, index) in actionList"
-        :style="{ color: action.color }"
-        >{{ action.name
-        }}<span
-          v-if="actionList.length !== 1 && index !== actionList.length - 1"
-          class="text-white"
-          >,
-        </span></span
-      >
-    </div> -->
-    <!-- <q-badge
-      class="bg-black text-white"
-      v-if="preferenceStore.actions && status"
-      :style="statusStyle"
-    >
-      <span v-if="status.keydown">{{ status.keydown }},</span>
-      <span v-if="status.message">{{ status.message }},</span>
-      <span>{{ utils.toFixed2(status.x) }},{{ utils.toFixed2(status.y) }}</span>
-    </q-badge> -->
     <div
       v-if="preferenceStore.showPopup && showPopup && annotationList.length && popup.x && popup.y"
       class="absolute"

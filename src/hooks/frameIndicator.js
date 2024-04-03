@@ -6,7 +6,7 @@ import { useAnnotationStore } from '~/store/annotation.js'
 import { usePreferenceStore } from '~/store/preference.js'
 
 export const frameIndicator = () => {
-  const ALWAYS_SHOW = true // TODO: load from preferenceStore
+  const ALWAYS_SHOW = true
 
   const HEIGHT_UNIT = 16
   const HEIGHT_MARKER = 8

@@ -18,14 +18,6 @@
         <span v-else>-</span>
       </div>
     </div>
-    <!-- TODO -->
-    <!-- <div v-if="annotationStore.hasVideo" class="row q-px-md q-pb-sm">
-      <div class="col">Name</div>
-      <div class="col">
-        <span v-if="video.name">{{ video.name }}</span>
-        <span v-else>-</span>
-      </div>
-    </div> -->
     <div class="q-px-md q-pb-md">
       <q-btn-group spread flat>
         <q-btn outline icon="movie" @click="handleOpen" label="open"></q-btn>

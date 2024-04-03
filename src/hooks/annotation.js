@@ -52,7 +52,6 @@ export const useAnnotation = () => {
         const data = {
           version: PACKAGE_VERSION,
           annotation: annotationStore.exportAnnotation(),
-          // config: configurationStore.exportConfig()
         }
         exportFile(filename + '.json', new Blob([JSON.stringify(data)]), { mimeType: 'text/plain' })
         mainStore.drawer = false
