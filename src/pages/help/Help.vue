@@ -14,16 +14,16 @@
       - Click play (or press <q-chip color="secondary" size="md">Space</q-chip>) to start the video.
       <br>
       - To mark the end of a skill segment, press <q-chip color="secondary" size="md">Enter</q-chip> to add the
-      segment and advance to the next.
+      segment.
       <br>
       - Write the skill description in the text field at the bottom of the page.
       <br>
-      - Afterwards, press <q-chip color="secondary" size="md">Enter</q-chip> to save the skill segment. Press
+      - Press <q-chip color="secondary" size="md">Enter</q-chip> to save the segment and advance. Press
       <q-chip color="secondary" size="md">Space</q-chip> to continue playing the video.
       <br>
       - To adjust any of the skill segments, click the segment (marked
       in blue) or the locate button on the corresponding row,
-      and adjust the start and end times. Then press the set button on the corresponding row to save the changes.
+      and adjust the start and end times. Then press the set button on the corresponding row to save the changes. Press advance to move on.
       <br>
       - If the segment is a mistake, click the mistake button on the corresponding row.
       <br>
@@ -80,7 +80,7 @@ const shortcuts = [
   // },
   {
     keys: ['enter'],
-    description: 'add a new video segment & advance'
+    description: 'add a new video segment'
     // , and automatically pause the video. If pressed again, save the current segement and continue playing the video.
   },
   // command/control + s for save

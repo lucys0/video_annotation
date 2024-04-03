@@ -71,7 +71,7 @@
           />
         </q-item-section>
       </q-item>
-      <q-item
+      <!-- <q-item
         tag="label"
         v-ripple
       >
@@ -97,7 +97,7 @@
             hide-bottom-space
           />
         </q-item-section>
-      </q-item>
+      </q-item> -->
       <!-- <q-item
         tag="label"
         v-ripple

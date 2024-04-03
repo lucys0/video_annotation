@@ -116,34 +116,34 @@ const handleResize = (event) => {
   }
 }
 // buttons
-const handlePrevThumbnail = () => {
-  const currentIndex = annotationStore.currentSortedActionList.indexOf(annotationStore.currentThumbnailAction)
-  if (currentIndex > 0) {
-    annotationStore.currentThumbnailAction = annotationStore.currentSortedActionList[currentIndex - 1]
-  }
-}
-const handleNextThumbnail = () => {
-  const currentIndex = annotationStore.currentSortedActionList.indexOf(annotationStore.currentThumbnailAction)
-  if (currentIndex < annotationStore.currentSortedActionList.length - 1) {
-    annotationStore.currentThumbnailAction = annotationStore.currentSortedActionList[currentIndex + 1]
-  }
-}
-const handleLocate = () => {
-  const currentAction = annotationStore.currentThumbnailAction
-  if (typeof currentAction.start === 'number') {
-    // annotationStore.leftCurrentFrame = utils.time2index(currentAction.start)
-    annotationStore.leftCurrentFrame = currentAction.start
-  }
-  if (typeof currentAction.end === 'number') {
-    // annotationStore.rightCurrentFrame = utils.time2index(currentAction.end)
-    annotationStore.rightCurrentFrame = currentAction.end
-  }
-}
-const handleSet = () => {
-  const currentAction = annotationStore.currentThumbnailAction
-  // currentAction.start = utils.index2time(annotationStore.leftCurrentFrame)
-  // currentAction.end = utils.index2time(annotationStore.rightCurrentFrame)
-  currentAction.start = annotationStore.leftCurrentFrame
-  currentAction.end = annotationStore.rightCurrentFrame
-}
+// const handlePrevThumbnail = () => {
+//   const currentIndex = annotationStore.currentSortedActionList.indexOf(annotationStore.currentThumbnailAction)
+//   if (currentIndex > 0) {
+//     annotationStore.currentThumbnailAction = annotationStore.currentSortedActionList[currentIndex - 1]
+//   }
+// }
+// const handleNextThumbnail = () => {
+//   const currentIndex = annotationStore.currentSortedActionList.indexOf(annotationStore.currentThumbnailAction)
+//   if (currentIndex < annotationStore.currentSortedActionList.length - 1) {
+//     annotationStore.currentThumbnailAction = annotationStore.currentSortedActionList[currentIndex + 1]
+//   }
+// }
+// const handleLocate = () => {
+//   const currentAction = annotationStore.currentThumbnailAction
+//   if (typeof currentAction.start === 'number') {
+//     // annotationStore.leftCurrentFrame = utils.time2index(currentAction.start)
+//     annotationStore.leftCurrentFrame = currentAction.start
+//   }
+//   if (typeof currentAction.end === 'number') {
+//     // annotationStore.rightCurrentFrame = utils.time2index(currentAction.end)
+//     annotationStore.rightCurrentFrame = currentAction.end
+//   }
+// }
+// const handleSet = () => {
+//   const currentAction = annotationStore.currentThumbnailAction
+//   // currentAction.start = utils.index2time(annotationStore.leftCurrentFrame)
+//   // currentAction.end = utils.index2time(annotationStore.rightCurrentFrame)
+//   currentAction.start = annotationStore.leftCurrentFrame
+//   currentAction.end = annotationStore.rightCurrentFrame
+// }
 </script>

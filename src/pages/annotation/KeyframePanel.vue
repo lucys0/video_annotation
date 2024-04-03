@@ -9,7 +9,7 @@
         <q-btn outline icon="stop" :disabled="!showVideoPlayer" @click="handleStop">
           <q-tooltip v-if="showVideoPlayer">stop</q-tooltip>
         </q-btn>
-        <q-btn outline icon="file_download" :disabled="!showVideoPlayer" @click="handleSave">
+        <q-btn outline icon="file_download" @click="handleSave">
           <q-tooltip v-if="annotationStore.hasVideo">save (command+s)</q-tooltip>
         </q-btn>
       </q-btn-group>

@@ -10,14 +10,14 @@
       <div class="col-6 q-table__title">Video Segments</div>
       <q-space></q-space>
       <q-btn-group flat>
-        <q-btn size="sm" outline icon="new_label" label="add & advance" @click="handleAddAdvance">
-          <q-tooltip>add current range and advance for next</q-tooltip>
-        </q-btn>
         <q-btn size="sm" outline icon="add" label="add" @click="handleAdd">
-          <q-tooltip>add current range (+)</q-tooltip>
+          <q-tooltip>add current range</q-tooltip>
         </q-btn>
         <q-btn size="sm" outline icon="arrow_forward" label="advance" @click="handleAdvance">
           <q-tooltip>advance current range</q-tooltip>
+        </q-btn>
+        <q-btn size="sm" outline icon="new_label" label="add & advance" @click="handleAddAdvance">
+          <q-tooltip>add current range and advance for next</q-tooltip>
         </q-btn>
         <q-btn size="sm" outline icon="clear_all" label="clear" @click="handleClearAll">
           <q-tooltip>Bulk clear all actions</q-tooltip>
@@ -56,14 +56,14 @@
             <q-btn flat dense icon="edit_location_alt" style="width: 100%" @click="handleSet(props.row)">
               <q-tooltip>Set current left / right frame as this skill's start / end</q-tooltip>
             </q-btn>
-            <q-btn flat dense icon="delete" color="negative" style="width: 100%"
-              @click="handleDelete(props.row)"></q-btn>
             <q-btn flat dense icon="cancel" :color="props.row.is_mistake ? 'grey' : 'warning'" style="width: 100%"
               @click="handleSetMistake(props.row)">
               <q-tooltip>
                 {{ props.row.is_mistake ? 'Set this segment as NOT a mistake' : 'Set this segment as a mistake' }}
               </q-tooltip>
             </q-btn>
+            <q-btn flat dense icon="delete" color="negative" style="width: 100%"
+              @click="handleDelete(props.row)"></q-btn>
           </q-btn-group>
         </q-td>
       </q-tr>
@@ -225,7 +225,7 @@ const handleSet = (row) => {
   // row.end = utils.index2time(annotationStore.rightCurrentFrame)
   row.start = annotationStore.leftCurrentFrame
   row.end = annotationStore.rightCurrentFrame
-  handleAdvance()
+  // handleAdvance()
 }
 const handleDelete = (row) => {
   utils.confirm('Are you sure to delete this segment?').onOk(() => {
@@ -260,6 +260,7 @@ const handleKeyup = (event) => {
     // exit the input mode if the key is enter
     if (event.code === 'Enter') {
       event.target.blur()
+      handleAdvance()
     } 
     return false
   }
@@ -268,7 +269,7 @@ const handleKeyup = (event) => {
     handleAdd()
   } else if (event.code === 'Enter') {
     event.preventDefault()
-    handleAddAdvance()
+    handleAdd()
   }
 }
 onMounted(() => {
