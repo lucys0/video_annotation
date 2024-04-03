@@ -253,7 +253,7 @@ const handleSetMistake = (row) => {
 }
 
 // keybindings
-const handleKeyup = (event) => {
+const handleKeydown = (event) => {
   event.stopPropagation()
   if (event.target.nodeName.toLowerCase() === 'input') {
     // return false
@@ -273,9 +273,9 @@ const handleKeyup = (event) => {
   }
 }
 onMounted(() => {
-  window.addEventListener('keyup', handleKeyup, true)
+  window.addEventListener('keyup', handleKeydown, true)
 })
 onUnmounted(() => {
-  window.removeEventListener('keyup', handleKeyup, true)
+  window.removeEventListener('keyup', handleKeydown, true)
 })
 </script>

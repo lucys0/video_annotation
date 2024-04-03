@@ -289,15 +289,14 @@ const handleKeydown = (event) => {
     event.preventDefault();
     handleSave();
   }
-
-
   // use enter to pause the video
-  if (event.code === 'Enter') {
-    // handlePlayPause()
+  else if (event.code === 'Enter') {
+    event.preventDefault();
+    handlePlayPause()
     // if playing, pause
-    if (!isPaused.value) {
-      handlePlayPause()
-    }
+    // if (!isPaused.value) {
+    //   handlePlayPause()
+    // }
   }
 
 }
