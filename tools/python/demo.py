@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if len(result) != 0:
         result[0].show()
 
-    # 3.6 actionAnnotationList
+    # 3.6 skillAnnotationList
     actions = annotation.actions
     print(actions)
 

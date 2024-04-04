@@ -91,7 +91,7 @@ const q = useQuasar()
 
 const reversedActionList = computed(() => {
   // Creates a shallow copy of the array and reverses it
-  return [...annotationStore.actionAnnotationList].reverse();
+  return [...annotationStore.skillAnnotationList].reverse();
 });
 
 const columnList = [
@@ -132,7 +132,7 @@ const columnList = [
 
 // header
 const handleAdd = () => {
-  annotationStore.actionAnnotationList.push(
+  annotationStore.skillAnnotationList.push(
     new ActionAnnotation(
       annotationStore.leftCurrentFrame,
       annotationStore.rightCurrentFrame,
@@ -162,10 +162,10 @@ const handleAddAdvance = () => {
   handleAdvance()
 }
 const handleClearAll = () => {
-  if (annotationStore.actionAnnotationList.length !== 0) {
+  if (annotationStore.skillAnnotationList.length !== 0) {
     utils.confirm('Are you sure to delete ALL actions?').onOk(() => {
       annotationStore.currentThumbnailAction = null
-      annotationStore.actionAnnotationList = []
+      annotationStore.skillAnnotationList = []
     })
   } else {
     utils.notify('There are no actions!', 'warning')
@@ -183,7 +183,7 @@ const actionFilter = (rows, filter) => {
 }
 
 // sort
-annotationStore.currentSortedActionList = annotationStore.actionAnnotationList
+annotationStore.currentSortedActionList = annotationStore.skillAnnotationList
 const actionSort = (rows, sortBy, descending) => {
   const sortedRows = rows.slice().sort((a, b) => {
     const sortVal = a[sortBy] < b[sortBy] ? -1 : 1
@@ -230,9 +230,9 @@ const handleSet = (row) => {
 const handleDelete = (row) => {
   utils.confirm('Are you sure to delete this segment?').onOk(() => {
     annotationStore.currentThumbnailAction = null
-    for (let i in annotationStore.actionAnnotationList) {
-      if (annotationStore.actionAnnotationList[i] === row) {
-        annotationStore.actionAnnotationList.splice(i, 1)
+    for (let i in annotationStore.skillAnnotationList) {
+      if (annotationStore.skillAnnotationList[i] === row) {
+        annotationStore.skillAnnotationList.splice(i, 1)
       }
     }
   })

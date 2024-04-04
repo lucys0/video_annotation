@@ -21,7 +21,7 @@ const DEFAULT_ANNOTATION = {
   objectAnnotationListMap: {},
   regionAnnotationListMap: {},
   skeletonAnnotationListMap: {},
-  actionAnnotationList: [],
+  skillAnnotationList: [],
 
   leftCurrentFrame: 0,
   rightCurrentFrame: 0,
@@ -87,7 +87,7 @@ export const useAnnotationStore = defineStore('annotation', () => {
       state.objectAnnotationListMap,
       state.regionAnnotationListMap,
       state.skeletonAnnotationListMap,
-      state.actionAnnotationList,
+      state.skillAnnotationList,
       state.keyframeList
     ],
     () => {
@@ -146,7 +146,7 @@ export const useAnnotationStore = defineStore('annotation', () => {
         // objectAnnotationListMap,
         // regionAnnotationListMap,
         // skeletonAnnotationListMap,
-        actionAnnotationList: state.actionAnnotationList
+        skillAnnotationList: state.skillAnnotationList
       }
     },
     importAnnotation: (data) => {
@@ -156,7 +156,7 @@ export const useAnnotationStore = defineStore('annotation', () => {
         objectAnnotationListMap,
         regionAnnotationListMap,
         skeletonAnnotationListMap,
-        actionAnnotationList
+        skillAnnotationList
       } = data
       /// video
       if (!state.video.src && video.src.startsWith('blob')) {
@@ -239,10 +239,10 @@ export const useAnnotationStore = defineStore('annotation', () => {
         }
       }
       state.skeletonAnnotationListMap = skeletonAnnotationListMap
-      /// actionAnnotationList
-      for (let i in actionAnnotationList) {
-        const actionAnnotation = actionAnnotationList[i]
-        actionAnnotationList[i] = new ActionAnnotation(
+      /// skillAnnotationList
+      for (let i in skillAnnotationList) {
+        const actionAnnotation = skillAnnotationList[i]
+        skillAnnotationList[i] = new ActionAnnotation(
           actionAnnotation.start,
           actionAnnotation.end,
           actionAnnotation.action,
@@ -251,7 +251,7 @@ export const useAnnotationStore = defineStore('annotation', () => {
           actionAnnotation.description
         )
       }
-      state.actionAnnotationList = actionAnnotationList
+      state.skillAnnotationList = skillAnnotationList
       mainStore.isSaved = true
     }
   }

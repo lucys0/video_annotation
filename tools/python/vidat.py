@@ -737,7 +737,7 @@ class _Annotation:
         self.__raw_skeleton_annotation_list_map = raw_annotation["skeletonAnnotationListMap"]
         self._skeletons = _SkeletonAnnotations(self.__raw_skeleton_annotation_list_map, self._video, config, cap)
 
-        self.__raw_action_annotation_list = raw_annotation["actionAnnotationList"]
+        self.__raw_action_annotation_list = raw_annotation["skillAnnotationList"]
         self._actions = _ActionAnnotations(self.__raw_action_annotation_list, self._video, config, cap)
 
     @property

@@ -207,7 +207,7 @@ const actionIndicatorStyle = ref({
   bottom: '0'
 })
 const actionList = computed(() =>
-  annotationStore.actionAnnotationList
+  annotationStore.skillAnnotationList
     .filter(
       (action) =>
         // currentFrame.value >= utils.time2index(action.start) && currentFrame.value <= utils.time2index(action.end)

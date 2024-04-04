@@ -35,7 +35,7 @@ const actionIndicatorList = computed(() => {
   if (!annotationStore.video.frames) {
     return []
   }
-  return annotationStore.actionAnnotationList.map((action) => {
+  return annotationStore.skillAnnotationList.map((action) => {
     const markerWidthUnit = 100 / (annotationStore.video.frames - 1)
     // const leftFrame = utils.time2index(action.start)
     // const rightFrame = utils.time2index(action.end)
@@ -52,7 +52,7 @@ const actionIndicatorList = computed(() => {
 })
 
 const handleClick = (index) => {
-  const action = annotationStore.actionAnnotationList[index]
+  const action = annotationStore.skillAnnotationList[index]
   // annotationStore.leftCurrentFrame = utils.time2index(action.start)
   // annotationStore.rightCurrentFrame = utils.time2index(action.end)
   annotationStore.leftCurrentFrame = action.start
